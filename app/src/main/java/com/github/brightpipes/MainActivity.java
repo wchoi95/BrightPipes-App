@@ -1,14 +1,15 @@
 package com.github.brightpipes;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.Window;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private Thread gameThread;
     private SurfaceView gameSurface;
@@ -16,10 +17,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         gameSurface = (SurfaceView) findViewById(R.id.gameSurface);
         gameThread = new Thread(new GameLoop());
+
 
         gameSurface.getHolder().addCallback(new SurfaceHolder.Callback() {
 
